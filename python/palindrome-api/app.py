@@ -23,7 +23,7 @@ def check_freq(word):
   
 @app.route('/<string:word>', methods = ['GET'])
 def disp(word):
-    palindrome = isPalindrome(word.replace(" ", ""))
+    palindrome = isPalindrome(word.lower().replace(" ", ""))
     if palindrome:
         freq = check_freq(word.lower())
         ans = {
