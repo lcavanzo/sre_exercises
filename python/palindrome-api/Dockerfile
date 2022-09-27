@@ -16,6 +16,4 @@ COPY . /app
 EXPOSE 5000
 
 # configure the container to run in an executed manner
-ENTRYPOINT [ "python" ]
-CMD ["app.py" ]
-#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
