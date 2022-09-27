@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import unidecode
   
 # creating a Flask app
 app = Flask(__name__)
@@ -16,13 +17,14 @@ def check_freq(word):
     count the frequency of each char in the word
     """
     freq = {}
-    for c in set(word):
+    for c in set(word.replace(" ", "")):
        freq[c] = word.count(c)
     return dict(sorted(freq.items()))
 
   
 @app.route('/<string:word>', methods = ['GET'])
 def disp(word):
+    word = unidecode.unidecode(word)
     palindrome = isPalindrome(word.lower().replace(" ", ""))
     if palindrome:
         freq = check_freq(word.lower())
