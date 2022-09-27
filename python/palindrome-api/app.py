@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import unidecode
-  
+import unicodedata
+
 # creating a Flask app
 app = Flask(__name__)
 
@@ -24,7 +25,8 @@ def check_freq(word):
   
 @app.route('/<string:word>', methods = ['GET'])
 def disp(word):
-    word = unidecode.unidecode(word)
+    word = unicodedata.normalize('NFKD', word).encode('ASCII', 'ignore')
+    word = word.decode()
     palindrome = isPalindrome(word.lower().replace(" ", ""))
     if palindrome:
         freq = check_freq(word.lower())
@@ -32,7 +34,7 @@ def disp(word):
             'name': word, 
             'palindrome': palindrome, 
             'sorted': freq,
-            'lenght': len(word)
+            'lenght': len(word.replace(" ", ""))
         }
     else:
         ans = {
@@ -40,7 +42,7 @@ def disp(word):
             'palindrome': palindrome
         }
     return jsonify(ans)
-  
+ # Anita lavá la Tina 
   
 # driver function
 if __name__ == '__main__':
