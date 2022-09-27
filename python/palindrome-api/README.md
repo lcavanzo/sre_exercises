@@ -1,6 +1,4 @@
-# Project Title
-
-Palindrome API
+# Palindrome API
 
 ## Description
 
@@ -33,4 +31,5 @@ Container environemnt
 * docker run -d --name palindrome -p 80:5000 lcavanzo/api-palindrome:v1
 
 ### Testing
- <ip>:80/anitalavalatina
+ instance-ip:port/palindrome
+ 10.10.10.10:80/anitalavalatina
